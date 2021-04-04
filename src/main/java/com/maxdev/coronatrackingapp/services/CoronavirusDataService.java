@@ -1,17 +1,14 @@
 package com.maxdev.coronatrackingapp.services;
 
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-import java.io.*;
-import java.time.Duration;
+import java.io.IOException;
+import java.io.StringReader;
 
 @Service
 public class CoronavirusDataService {
