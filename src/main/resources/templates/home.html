@@ -20,6 +20,9 @@
         <div class="container">
             <h1 class="display-4" th:text="${totalCases}">Cases</h1>
             <p class="lead">The total number of reported cases to date</p>
+            <hr class="my-4">
+            <p>New cases reported since previous day</p>
+            <h3 th:text="${totalNewCases}"></h3>
         </div>
     </div>
     <table  class="table">
