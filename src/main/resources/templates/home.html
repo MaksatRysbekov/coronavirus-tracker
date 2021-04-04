@@ -4,34 +4,39 @@
 
 <head>
     <title>Coronavirus Tracker</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-<h1>Coronavirus Tracker</h1>
-<p>This app lists current number of cases</p>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4" th:text="${totalCases}">Cases</h1>
-        <p class="lead">The total number of reported cases to date</p>
+
+<div class="container">
+    <h1>Coronavirus Tracker</h1>
+    <p>This app lists current number of cases</p>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4" th:text="${totalCases}">Cases</h1>
+            <p class="lead">The total number of reported cases to date</p>
+        </div>
     </div>
+    <table  class="table">
+        <tr>
+            <th>Country</th>
+            <th>Total cases</th>
+            <th>State</th>
+            <th>Changes since last day</th>
+        </tr>
+        <tr th:each="coronaStat : ${coronaStats}">
+            <td th:text="${coronaStat.country}"></td>
+            <td th:text="${coronaStat.latestReportedCases}">0</td>
+            <td th:text="${coronaStat.state}"></td>
+            <td th:text="${coronaStat.diffFromPrevDay}"></td>
+        </tr>
+    </table>
 </div>
-
-<table>
-    <tr>
-
-        <th>Country</th>
-        <th>Total cases</th>
-        <th>State</th>
-    </tr>
-    <tr th:each="coronaStat : ${coronaStats}">
-        <td th:text="${coronaStat.country}"></td>
-        <td th:text="${coronaStat.latestReportedCases}">0</td>
-        <td th:text="${coronaStat.state}"></td>
-    </tr>
-</table>
 
 </body>
 
