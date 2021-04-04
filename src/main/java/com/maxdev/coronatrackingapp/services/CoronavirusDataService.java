@@ -1,6 +1,7 @@
 package com.maxdev.coronatrackingapp.services;
 
 import com.maxdev.coronatrackingapp.models.LocationStats;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
@@ -19,11 +20,10 @@ import java.util.List;
 @Slf4j
 public class CoronavirusDataService {
     private final static String CORONA_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-    private List<LocationStats> allStats = new ArrayList<>();
 
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
-    public void fetchCoronaData() throws IOException {
+    public List<LocationStats> fetchCoronaData() throws IOException {
         List<LocationStats> newStats = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
         String response = restTemplate.getForObject(CORONA_DATA_URL, String.class);
@@ -41,7 +41,7 @@ public class CoronavirusDataService {
             log.info("Received data: {}", stats);
         }
 
-        allStats = newStats;
+        return newStats;
 
     }
 }
